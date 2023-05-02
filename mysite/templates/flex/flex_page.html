@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+    {{self.subtitle}}
+    <div class="lead"><br>
+        {{self.description|richtext}}
+    </div>
+{% endblock %}
