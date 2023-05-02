@@ -1,9 +1,9 @@
 """flexible page"""
 from django.db import models
-from wagtail.core.models import Page
-from wagtail.admin.edit_handlers import FieldPanel,StreamFieldPanel
-from wagtail.core.fields import StreamField
-from wagtail.core.fields import RichTextField
+from wagtail.models import Page
+from wagtail.admin.panels import FieldPanel,StreamFieldPanel
+from wagtail.fields import StreamField
+from wagtail.fields import RichTextField
 from wagtail.api import APIField
 
 # Create your models here.
