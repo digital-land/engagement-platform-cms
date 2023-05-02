@@ -3,8 +3,6 @@ __pycache__/
 
 /media/
 
-*.sqlite3
-
 *.log
 log/
 logs/
