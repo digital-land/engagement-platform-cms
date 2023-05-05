@@ -3,8 +3,30 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
-    {{self.subtitle}}
-    <div class="lead"><br>
+    <div style="margin-left: 20px;">{{self.subtitle}}</div>
+    
+    <div class="lead" style="margin-left: 20px;"><br>
         {{self.description|richtext}}
+    </div><br>
+    <div style="margin-left: 20px;">Specification URL:</div>
+    <div class="lead" style="margin-left: 22px;">
+        {{self.specification_URL|richtext}}
+    </div><br>
+    <div style="margin-left: 20px;">Fix Issues:</div>
+    <div class="accordion" id="accordionExample">
+        {% for item in self.accordion_items %}
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#{{ item.id_for_label }}" aria-expanded="false" aria-controls="{{ item.id_for_label }}">
+                        {{ item.value.issue }}
+                    </button>
+                </h2>
+                <div id="{{ item.id_for_label }}" class="accordion-collapse collapse" aria-labelledby="{{ item.id_for_label }}" data-bs-parent="#accordionExample" style="">
+                    <div class="accordion-body">
+                        {{ item.value.fix|richtext }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}
