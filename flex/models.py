@@ -51,12 +51,12 @@ class FlexPage(Page):
 
     #fieldPanel takes the field and puts it into wagtail admin for us to edit
     #or else it will just be a field in db and wont be of any use
-    content_panels=Page.content_panels+[MultiFieldPanel([
+    content_panels=Page.content_panels+[
             FieldPanel('subtitle'),
             FieldPanel('description'),
             FieldPanel('specification_URL'),
             StreamFieldPanel('accordion_items')
-        ], heading='Content'),]
+        ]
     
     class Meta:
         verbose_name="Flex Page"
