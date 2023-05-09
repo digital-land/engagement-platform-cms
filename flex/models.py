@@ -45,16 +45,18 @@ class FlexPage(Page):
     api_fields=[
         APIField('subtitle'),
         APIField('description'),
-        APIField('specification_URL')
+        APIField('specification_URL'),
+        APIField('accordion_items')
     ]
+
     #fieldPanel takes the field and puts it into wagtail admin for us to edit
     #or else it will just be a field in db and wont be of any use
-    content_panels=Page.content_panels+[MultiFieldPanel([
+    content_panels=Page.content_panels+[
             FieldPanel('subtitle'),
             FieldPanel('description'),
             FieldPanel('specification_URL'),
             StreamFieldPanel('accordion_items')
-        ], heading='Content'),]
+        ]
     
     def __init__(self, *args):
         super().__init__(*args)
