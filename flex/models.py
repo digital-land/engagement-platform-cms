@@ -56,6 +56,20 @@ class FlexPage(Page):
             StreamFieldPanel('accordion_items')
         ], heading='Content'),]
     
+    def __init__(self, *args):
+        super().__init__(*args)
+        self.replaceTokens()
+
     class Meta:
         verbose_name="Flex Page"
         verbose_name_plural="Flex Pages"
+
+    # ToDo: 
+    #   -   ideally this would just loop over the content keys so we dont have to manually add each new bit of content here
+    #   -   need to be able to replace multiple tokens
+    #   -   need to potentially be able to get values from other uris, such as the size of a dataset
+    def replaceTokens(self):
+        self.subtitle = self.subtitle.replace('{{ title }}', 'Engagement Platform')
+        self.description = self.description.replace('{{ title }}', 'Engagement Platform')
+        self.specification_URL = self.specification_URL.replace('{{ title }}', 'Engagement Platform')
+
