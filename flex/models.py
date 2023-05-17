@@ -1,17 +1,28 @@
 """flexible page"""
 from django.db import models
 from wagtail.models import Page
-from wagtail.admin.panels import FieldPanel,StreamFieldPanel,MultiFieldPanel
-from wagtail.fields import StreamField
-from wagtail.fields import RichTextField
+from wagtail.admin.panels import FieldPanel,MultiFieldPanel
+from wagtail.fields import StreamField, RichTextField
 from wagtail.api import APIField
 from wagtail.rich_text import LinkHandler
-from wagtail.core import blocks
+from wagtail import blocks
 
 class AccordionItemBlock(blocks.StructBlock):
     issue = blocks.CharBlock(required=True)
     fix = blocks.RichTextBlock(required=True)
 
+    class Meta:
+        icon = 'list-ul'
+
+class CustomHeadingBlock(blocks.StructBlock):
+    SHIRT_SIZES = (
+        ('S', 'Small'),
+        ('M', 'Medium'),
+        ('L', 'Large'),
+    )
+    size = models.CharField(max_length=1, choices=SHIRT_SIZES)
+    text = blocks.RichTextBlock(required=True)
+    
     class Meta:
         icon = 'list-ul'
 
@@ -35,10 +46,11 @@ class FlexPage(Page):
     specification_URL = CustomRichTextField()
     accordion_items = StreamField(
         [
-            ('accordion_item', AccordionItemBlock())
+            ('content_block', blocks.RichTextBlock(required=True)),
         ],
         null=True,
-        blank=True
+        blank=True,
+        use_json_field=True
     )
 
     #add field to API
@@ -55,7 +67,7 @@ class FlexPage(Page):
             FieldPanel('subtitle'),
             FieldPanel('description'),
             FieldPanel('specification_URL'),
-            StreamFieldPanel('accordion_items')
+            FieldPanel('accordion_items')
         ]
     
     class Meta:
