@@ -1,3 +1,4 @@
 Django>=4.1,<4.2
 wagtail>=4.2,<4.3
+whitenoise
 django-toolbelt

@@ -89,6 +89,8 @@ wagtail==4.2.3
     # via -r requirements/requirements.in
 webencodings==0.5.1
     # via html5lib
+whitenoise==6.4.0
+    # via -r requirements/requirements.in
 willow==1.4.1
     # via wagtail
 
