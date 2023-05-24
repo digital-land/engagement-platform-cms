@@ -10,3 +10,6 @@ logs/
 .vscode/
 
 env/
+
+# python
+.venv

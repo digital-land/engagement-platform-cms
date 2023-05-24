@@ -1,0 +1,9 @@
+django-debug-toolbar
+Django>=4.1,<4.2
+flake8
+black
+pytest
+playwright
+pytest-playwright
+pytest-md-report
+pre-commit
