@@ -1,0 +1,8 @@
+django-debug-toolbar
+flake8
+black
+pytest
+playwright
+pytest-playwright
+pytest-md-report
+pre-commit
