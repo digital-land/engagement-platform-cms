@@ -6,7 +6,7 @@
 #
 anyascii==0.3.2
     # via wagtail
-asgiref==3.6.0
+asgiref==3.7.1
     # via django
 beautifulsoup4==4.11.2
     # via wagtail
@@ -67,7 +67,7 @@ pytz==2023.3
     #   django-modelcluster
     #   djangorestframework
     #   l18n
-requests==2.30.0
+requests==2.31.0
     # via wagtail
 six==1.16.0
     # via
@@ -81,7 +81,7 @@ static3==0.7.0
     # via dj-static
 telepath==0.3
     # via wagtail
-typing-extensions==4.5.0
+typing-extensions==4.6.1
     # via dj-database-url
 urllib3==2.0.2
     # via requests

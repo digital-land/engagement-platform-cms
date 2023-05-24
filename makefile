@@ -3,7 +3,7 @@
 # =============================
 
 server::
-	python -m uvicorn application.app:app --reload --port=8080
+	 python3 manage.py runserver
 
 # compile scss
 
@@ -15,10 +15,10 @@ server::
 
 init::
 	python -m pip install pip-tools
-	make piptool-compile
+	make piptools-compile
 	make dependencies
 
-piptool-compile::
+piptools-compile::
 	python -m piptools compile --output-file=requirements/requirements.txt requirements/requirements.in
 	python -m piptools compile requirements/dev-requirements.in
 

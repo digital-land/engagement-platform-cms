@@ -1,8 +1,12 @@
 from .base import *
+import os
 
 DEBUG = False
 
-SECRET_KEY = "get from environment"
+env = os.environ.copy()
+SECRET_KEY = env['SECRET_KEY']
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 ALLOWED_HOSTS = ["*"]
 
