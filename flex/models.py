@@ -1,12 +1,12 @@
 """flexible page"""
 from django.db import models
 from wagtail.models import Page
-from wagtail.admin.panels import FieldPanel,StreamFieldPanel,MultiFieldPanel
+from wagtail.admin.panels import FieldPanel
 from wagtail.fields import StreamField
 from wagtail.fields import RichTextField
 from wagtail.api import APIField
 from wagtail.rich_text import LinkHandler
-from wagtail.core import blocks
+from wagtail import blocks
 
 class AccordionItemBlock(blocks.StructBlock):
     issue = blocks.CharBlock(required=True)
@@ -38,7 +38,8 @@ class FlexPage(Page):
             ('accordion_item', AccordionItemBlock())
         ],
         null=True,
-        blank=True
+        blank=True,
+        use_json_field=True
     )
 
     #add field to API
@@ -55,7 +56,7 @@ class FlexPage(Page):
             FieldPanel('subtitle'),
             FieldPanel('description'),
             FieldPanel('specification_URL'),
-            StreamFieldPanel('accordion_items')
+            FieldPanel('accordion_items')
         ]
     
     class Meta:

@@ -8,8 +8,20 @@
     <div class="jumbotron" style="background-image: url('{{img.url}}'); background-size: cover; background-position: center center; ">
         <h1 class="display-4">{{self.banner_title}}</h1>
         <div class="lead">{{self.banner_subtitle|richtext}}</div>
-        {% if self.banner_cta %}
-            <a class="btn btn-primary btn-lg" href="#" role="button">@todo</a>
-        {% endif %}
+        <ul>
+            {% for item in self.collection.all %}
+                <li>
+                    {{item.collection.name}}
+                    <br>
+                    {% if item.collection.description %}
+                        {{item.collection.description}}
+                    {% endif %}
+                    <br>
+                    {% if item.collection.specification_URL %}
+                        <a href="{{item.collection.specification_URL}}">(website)</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
       </div>
 {% endblock %}
