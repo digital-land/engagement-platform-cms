@@ -1,9 +1,40 @@
+import csv
+import os
 from django.db import models
-
 from wagtail.models import Page
-from wagtail.admin.panels import FieldPanel,PageChooserPanel
+from wagtail.admin.panels import FieldPanel,PageChooserPanel,MultiFieldPanel
 from wagtail.fields import RichTextField
 from wagtail.api import APIField
+from wagtail.snippets.models import register_snippet
+
+class collection(models.Model):
+
+    name=models.CharField(max_length=100,primary_key=True)
+    description=models.CharField(max_length=500)
+    specification_URL=models.URLField(blank=True,null=True)
+
+    panels=[MultiFieldPanel([FieldPanel("name"),FieldPanel("description"),FieldPanel("specification_URL"),],heading="name, description and URL",)]
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name="collection"
+        verbose_name_plural="collections"
+
+register_snippet(collection)
+
+schema = {}
+reader = csv.DictReader(open(os.path.join('specification', "schema.csv")))
+for row in reader:
+    schema.setdefault(row["schema"],[])
+    schema[row["schema"]].append(row["name"])
+    schema[row["schema"]].append(row["description"])
+    name_Value=schema[row["schema"]][0]
+    description_Value=schema[row["schema"]][1]
+    
+    snippet_create = collection(name=name_Value, description=description_Value)
+    snippet_create.save()
 
 class HomePage(Page):
     """Home page model"""

@@ -59,3 +59,17 @@ test-acceptance:
 	python -m pytest --md-report --md-report-color=never -p no:warnings tests/acceptance
 
 # Security
+
+#fetch data from specifications repo
+SOURCE_URL=https://raw.githubusercontent.com/digital-land/
+
+
+ifeq (,$(wildcard ./makerules/specification.mk))
+
+specification::
+
+	@mkdir -p specification/
+    curl -qfsL '$(SOURCE_URL)/specification/main/specification/schema.csv' > specification/schema.csv
+    
+init::  specification
+endif

@@ -6,7 +6,7 @@ from wagtail.fields import StreamField
 from wagtail.fields import RichTextField
 from wagtail.api import APIField
 from wagtail.rich_text import LinkHandler
-from wagtail.core import blocks
+from wagtail import blocks
 
 class AccordionItemBlock(blocks.StructBlock):
     issue = blocks.CharBlock(required=True)
@@ -22,6 +22,19 @@ class CustomRichTextField(RichTextField):
         self.features += ['link']
         self.link_handler = LinkHandler()
 
+class dataset(Page):
+
+    template="flex/flex_page.html"
+    
+    name=models.CharField(max_length=100,null=True,blank=True)
+    description=RichTextField(features=["bold","italic"],default='',null=True,blank=True)
+    specification_URL=models.URLField(blank=True,null=True)
+
+    content_panels=Page.content_panels+[
+             FieldPanel('name'),
+             FieldPanel('description'),
+             FieldPanel('specification_URL'),]
+    
 # Create your models here.
 class FlexPage(Page):
     """flexible page class"""
